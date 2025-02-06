@@ -20,3 +20,4 @@ class Book extends Model
         $this->save();
     }
 }
+

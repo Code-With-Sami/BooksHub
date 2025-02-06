@@ -3,21 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Books;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 
 class BooksController extends Controller
 {
     public function show()
     {
         // $book = Book::findOrFail();
-        return view('admin.books');
+        $categories = Category::all();
+        return view('admin.books', compact('categories'));
+    }
+    
+    public function createBooks()
+    {  
+        $categories = Category::all();
+        return view('admin.create-books', compact('categories'));  
     }
 
-    public function createBooks()
+    public function storeBooks(Request $request) 
     {
-        return view('admin.create-books');  
+        $books = new Book();
+
+        $books->title = request('title');
+        $books->author = request('author');
+        $books->category_id = request('category_id');
+        $books->description = request('description');
+        $books->price = request('price');
+        $books->format = request('format');
+        if ($request->hasFile('cover_img')) {
+            $img = time().'-'.$request->cover_img->getClientOriginalName();
+            $request->cover_img->move(public_path('booksImages'),$img);
+            $books->cover_img = $img;
+        }
+        // $books->file_url = request('file_url');
+        $books->stock_quantity = request('stock_quantity');
+        $books->language = request('language');
+        $books->pages = request('pages');
+        $books->publication_date = request('publication_date');
+        $books->isbn = request('isbn');
+        // $books->rating = request('rating');
+        // $books->rating_count = request('rating_count');
+        $books->save();
+
+        return redirect('admin-books');
     }
 
     public function rateBook(Request $request, $id)

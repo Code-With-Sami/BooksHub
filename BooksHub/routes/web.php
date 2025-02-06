@@ -12,6 +12,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Routes For Frontend Users Side Pages
+Route::get('about-us', [UsersController::class, 'about']);
+Route::get('shop', [UsersController::class, 'shop']);
+Route::get('competitions', [UsersController::class, 'competitions']);
+Route::get('feedback', [UsersController::class, 'feedback']);
+Route::get('contact-us', [UsersController::class, 'contact']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -42,13 +49,8 @@ Route::middleware('auth')->group(function () {
 
 
     // Routes For Frontend Users Side Pages
-    Route::get('about-us', [UsersController::class, 'about']);
-    Route::get('shop', [UsersController::class, 'shop']);
-    Route::get('competitions', [UsersController::class, 'competitions']);
     Route::get('cart', [UsersController::class, 'cart']);
     Route::get('checkout', [UsersController::class, 'checkout']);
-    Route::get('feedback', [UsersController::class, 'feedback']);
-    Route::get('contact-us', [UsersController::class, 'contact']);
 });
 
 

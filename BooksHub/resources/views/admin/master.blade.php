@@ -631,7 +631,7 @@
               <div class="menu-title">Dashboard</div>
             </a>
             <ul>
-              <li><a href="index.html"><i class="material-icons-outlined">arrow_right</i>Visit Site</a>
+              <li><a href="{{url('/')}}"><i class="material-icons-outlined">arrow_right</i>Visit Site</a>
               </li>
             </ul>
           </li>

@@ -58,22 +58,23 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
-        <form action="">
+        <form action="{{url('storebooks')}}" method="post" enctype="multipart/form-data">
+          @csrf
         <div class="row">
           <div class="col-12 col-lg-8">
               <div class="card">
                  <div class="card-body">
                    <div class="mb-4">
                       <h5 class="mb-3">Book Title</h5>
-                      <input type="text" class="form-control" placeholder="write title here....">
+                      <input type="text" name="title" class="form-control" placeholder="write title here....">
                    </div>
                    <div class="mb-4">
                      <h5 class="mb-3">Book Description</h5>
-                     <textarea class="form-control" cols="4" rows="6" placeholder="write a description here.."></textarea>
+                     <textarea class="form-control" name="description" cols="4" rows="6" placeholder="write a description here.."></textarea>
                    </div>
                    <div class="mb-4">
                     <h5 class="mb-3">Book Image</h5>
-                    <input id="fancy-file-upload" type="file" name="files" accept=".jpg, .png, image/jpeg, image/png">
+                    <input id="fancy-file-upload" type="file" name="cover_img" accept=".jpg, .png, image/jpeg, image/png">
                   </div>
                   <div class="mb-4">
                     <h5 class="mb-3">Inventory</h5>
@@ -93,7 +94,7 @@
                             <div class="row g-3">
                               <div class="col-12 col-lg-12">
                                 <h6 class="mb-2">Price</h6>
-                                <input class="form-control" type="number" placeholder="$$$">
+                                <input class="form-control" type="number" name="price" placeholder="$$$">
                               </div>
                             </div>
                           </div>
@@ -101,7 +102,7 @@
                             <h6 class="mb-3">Add Stock</h6>
                             <div class="row g-3">
                               <div class="col-sm-12">
-                                <input class="form-control" type="number" placeholder="Quantity">
+                                <input class="form-control" type="number" name="stock_quantity" placeholder="Quantity">
                               </div>
                             </div>
                           </div>
@@ -135,13 +136,13 @@
                               </div>
                               <div class="col-12 col-lg-6">
                                 <label class="mb-2">Book ID</label>
-                                <input class="form-control" type="text" placeholder="ISBN Number">
+                                <input class="form-control" type="text" name="isbn" placeholder="ISBN Number">
                               </div>
                             </div>
                             <div class="row g-3">
                               <div class="col-12 col-lg-12">
                                 <h6>Upload Book</h6>
-                                <input id="fancy-file-upload" type="file" name="files" accept=".pdf">
+                                <input id="fancy-file-upload" type="file" name="file_url" accept=".pdf">
                               </div>
                             </div>
                           </div>
@@ -156,7 +157,7 @@
              <div class="card">
                 <div class="card-body">
                    <div class="d-flex align-items-center gap-3">
-                    <button type="button" class="btn btn-outline-primary flex-fill"><i class="bi bi-send me-2"></i>Publish</button>
+                    <button type="submit" class="btn btn-outline-primary flex-fill"><i class="bi bi-send me-2"></i>Publish</button>
                    </div>
                 </div>
               </div>
@@ -166,22 +167,21 @@
                       <div class="row g-3">
                           <div class="col-12">
                             <label for="Collection" class="form-label">Author</label>
-                            <input type="text" class="form-control" id="author" placeholder="Author">
+                            <input type="text" name="author" class="form-control" id="author" placeholder="Author">
                           </div>
                           <div class="col-12">
                             <label for="AddCategory" class="form-label">Category</label>
-                            <select class="form-select" id="AddCategory">
-                              <option value="0">Topwear</option>
-                              <option value="1">Bottomwear</option>
-                              <option value="2">Casual Tshirt</option>
-                              <option value="3">Electronic</option>
+                            <select class="form-select" name="category_id" id="AddCategory">
+                              @foreach($categories as $category)
+                              <option value="{{$category->id}}">{{$category->name}}</option>
+                              @endforeach
                             </select>
                           </div>
                           <div class="col-12">
                             <label for="format" class="form-label">Format</label>
-                            <select class="form-select" id="format">
-                              <option value="Soft Copy">Soft Copy</option>
-                              <option value="Hard Copy">Hard Copy</option>
+                            <select class="form-select" name="format" id="format">
+                              <option value="Soft-Copy">Soft Copy</option>
+                              <option value="Hard-Copy">Hard Copy</option>
                               <option value="CD">CD</option>
                             </select>
                           </div>
@@ -195,15 +195,15 @@
                     <div class="row g-3">
                       <div class="col-12">
                         <label for="language" class="form-label">language</label>
-                        <input type="text" class="form-control" id="language" placeholder="language">
+                        <input type="text" name="language" class="form-control" id="language" placeholder="language">
                        </div>
                       <div class="col-12">
                         <label for="pages" class="form-label">Pages</label>
-                        <input type="text" class="form-control" id="pages" placeholder="pages">
+                        <input type="text" name="pages" class="form-control" id="pages" placeholder="pages">
                        </div>
                        <div class="col-12">
                         <label for="publicationDate" class="form-label">Publication Date</label>
-                        <input type="date" class="form-control" id="publicationDate">
+                        <input type="date" name="publication_date" class="form-control" id="publicationDate">
                        </div>
                       </div>
                   </div>

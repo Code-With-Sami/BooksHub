@@ -14,36 +14,36 @@ class UsersController extends Controller
 
     public function about() 
     {
-        return view('index');    
+        return view('about');    
     }
 
     public function shop() 
     {
-        return view('index');    
+        return view('shop');    
     }
 
     public function competitions() 
     {
-        return view('index');    
+        return view('competitions');    
     }
 
     public function cart() 
     {
-        return view('index');    
+        return view('cart');    
     }
 
     public function checkout() 
     {
-        return view('index');    
+        return view('checkout');    
     }
 
     public function feedback() 
     {
-        return view('index');    
+        return view('feedback');    
     }
 
     public function contact() 
     {
-        return view('index');    
+        return view('contact');    
     }
 }
