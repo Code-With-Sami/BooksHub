@@ -8,6 +8,11 @@ class Book extends Model
 {
     protected $fillable = ['title', 'author', 'category_id', 'description', 'price', 'format', 'file_url', 'cover_image', 'stock_quantity', 'language', 'pages', 'publication_date', 'isbn', 'rating', 'rating_count'];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     // Function to update the book's rating
     public function updateRating($newRating)
     {

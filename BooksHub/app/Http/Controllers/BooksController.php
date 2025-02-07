@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
@@ -11,9 +12,9 @@ class BooksController extends Controller
 {
     public function show()
     {
-        // $book = Book::findOrFail();
-        $categories = Category::all();
-        return view('admin.books', compact('categories'));
+        $books = Book::with('category')->get();
+        return view('admin.books', compact('books'));
+
     }
     
     public function createBooks()
@@ -32,21 +33,66 @@ class BooksController extends Controller
         $books->description = request('description');
         $books->price = request('price');
         $books->format = request('format');
-        if ($request->hasFile('cover_img')) {
-            $img = time().'-'.$request->cover_img->getClientOriginalName();
-            $request->cover_img->move(public_path('booksImages'),$img);
-            $books->cover_img = $img;
+        if ($request->hasFile('cover_image')) {
+            $img = time().'-'.$request->cover_image->getClientOriginalName();
+            $request->cover_image->move(public_path('booksImages'),$img);
+            $books->cover_image = $img;
         }
-        // $books->file_url = request('file_url');
+        if ($request->hasFile('file_url')) {
+            $file = time().'-'.$request->file_url->getClientOriginalName();
+            $request->file_url->move(public_path('booksPDF'),$file);
+            $books->file_url = $file;
+        }
         $books->stock_quantity = request('stock_quantity');
         $books->language = request('language');
         $books->pages = request('pages');
         $books->publication_date = request('publication_date');
         $books->isbn = request('isbn');
-        // $books->rating = request('rating');
-        // $books->rating_count = request('rating_count');
         $books->save();
 
+        return redirect('admin-books');
+    }
+
+    public function editBooks($id)
+    {
+        $book = Book::with('category')->find($id);
+        $categories = Category::all();
+        return view('admin.edit-books', compact('book', 'categories'));
+    }
+
+    public function updateBooks(Request $request, $id): RedirectResponse
+    {
+        $books = Book::find($id);
+
+        $books->title = request('title');
+        $books->author = request('author');
+        $books->category_id = request('category_id');
+        $books->description = request('description');
+        $books->price = request('price');
+        $books->format = request('format');
+        if ($request->hasFile('cover_image')) {
+            $img = time().'-'.$request->cover_image->getClientOriginalName();
+            $request->cover_image->move(public_path('booksImages'),$img);
+            $books->cover_image = $img;
+        }
+        if ($request->hasFile('file_url')) {
+            $file = time().'-'.$request->file_url->getClientOriginalName();
+            $request->file_url->move(public_path('booksPDF'),$file);
+            $books->file_url = $file;
+        }
+        $books->stock_quantity = request('stock_quantity');
+        $books->language = request('language');
+        $books->pages = request('pages');
+        $books->publication_date = request('publication_date');
+        $books->isbn = request('isbn');
+        $books->save();
+
+        return redirect('admin-books');
+    }
+
+    public function deleteBooks($id)
+    {
+        Book::find($id)->delete();
         return redirect('admin-books');
     }
 

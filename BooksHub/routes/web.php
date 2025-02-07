@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UsersController::class, 'index']);
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin-books', [BooksController::class, 'show']);
     Route::get('/create-books', [BooksController::class, 'createBooks']);   
     Route::post('/storebooks', [BooksController::class, 'storeBooks'])->name('storebooks');
+    Route::get('/edit-books/{id}', [BooksController::class, 'editBooks']);
+    Route::post('/updateBooks/{id}', [BooksController::class, 'updateBooks'])->name('updateBooks');
+    Route::get('/delete-books/{id}', [BooksController::class, 'deleteBooks']);
     
     // Route for books categories
     Route::get('/admin-categories', [BooksController::class, 'booksCategories']);
@@ -47,10 +51,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/updateCategory/{id}', [BooksController::class, 'updateCategory'])->name('updateCategory');
     Route::get('/delete-category/{id}', [BooksController::class, 'deleteCategory']);
 
+    // Routes For Orders
+    Route::get('/admin/orders', [OrderController::class, 'index']); // Admin sees all orders
+    Route::get('/admin/orders/{id}', [OrderController::class, 'show']); // Admin views a single order
+    Route::post('/admin/orders/{id}', [OrderController::class, 'update']); // Admin updates order status
+    Route::post('/admin/orders/{id}', [OrderController::class, 'destroy']); // Admin deletes an order
+
 
     // Routes For Frontend Users Side Pages
     Route::get('cart', [UsersController::class, 'cart']);
     Route::get('checkout', [UsersController::class, 'checkout']);
+
+    Route::post('/orders', [OrderController::class, 'store']); // User places an order
 });
 
 

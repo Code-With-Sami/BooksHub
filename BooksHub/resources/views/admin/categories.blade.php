@@ -49,14 +49,14 @@
       <div class="row g-3 ">
         <div class="col-10">
           <div class="position-relative">
-            <input class="form-control px-5" type="search" placeholder="Search Products">
+            <input class="form-control px-5" type="search" placeholder="Search Category">
             <span
               class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
           </div>
         </div>
         <div class="col-2">
           <div class="d-flex align-items-center gap-2 justify-content-lg-end">
-            <a class="btn btn-primary px-4" href="{{url('create-categories')}}"><i class="bi bi-plus-lg me-2"></i>Add Product</a>
+            <a class="btn btn-primary px-4" href="{{url('create-categories')}}"><i class="bi bi-plus-lg me-2"></i>Add Category</a>
           </div>
         </div>
       </div><!--end row-->

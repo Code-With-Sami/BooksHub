@@ -649,18 +649,6 @@
           </li>
           <li>
               <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="material-icons-outlined">book</i>
-                </div>
-                <div class="menu-title">Books</div>
-              </a>
-              <ul>
-                <li><a href="{{url('admin-books')}}"><i class="material-icons-outlined">arrow_right</i>Books</a>
-                <li><a href="{{url('create-books')}}"><i class="material-icons-outlined">arrow_right</i>Add Book</a>
-                </li>
-              </ul>
-          </li>
-          <li>
-              <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="material-icons-outlined">category</i>
                 </div>
                 <div class="menu-title">Categories</div>
@@ -668,6 +656,18 @@
               <ul>
                 <li><a href="{{url('admin-categories')}}"><i class="material-icons-outlined">arrow_right</i>Ctaegories</a>
                 <li><a href="{{url('create-categories')}}"><i class="material-icons-outlined">arrow_right</i>Add Category</a>
+                </li>
+              </ul>
+          </li>
+          <li>
+              <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="material-icons-outlined">book</i>
+                </div>
+                <div class="menu-title">Books</div>
+              </a>
+              <ul>
+                <li><a href="{{url('admin-books')}}"><i class="material-icons-outlined">arrow_right</i>Books</a>
+                <li><a href="{{url('create-books')}}"><i class="material-icons-outlined">arrow_right</i>Add Book</a>
                 </li>
               </ul>
           </li>

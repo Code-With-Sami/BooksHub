@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitions | Bookle</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+    <style>
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-in-out;
+        }
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📖 Competitions</h1>
+        <p>Welcome to our Competitions Page, where creativity meets opportunity!</p>
+    </header>
+
+    <section id="announcements">
+        <h2>📢 Competition Announcements</h2>
+        <ul>
+            <li>📅 New competition details are posted one week before the start date.</li>
+            <li>🏆 Winners from past competitions are also featured here.</li>
+            <li>🎯 Stay updated for upcoming contests, topics, deadlines, and rewards.</li>
+        </ul>
+    </section>
+
+    <section id="how-to-participate">
+        <h2>📝 How to Participate?</h2>
+        <div class="competition">
+            <h3>1️⃣ Essay Writing Competition</h3>
+            <h4>✅ Rules & Guidelines:</h4>
+            <ul>
+                <li>Only registered users can participate.</li>
+                <li>A new topic will be displayed when you access the competition page.</li>
+                <li>A 3-hour countdown timer will start automatically once the page is accessed.</li>
+                <li>If you don’t submit within 3 hours, your entry will be automatically disqualified.</li>
+            </ul>
+            <h4>✅ Submission Process:</h4>
+            <ol>
+                <li>Read the given topic carefully.</li>
+                <li>Write your essay (save as a .doc, .docx, or .pdf file).</li>
+                <li>Click the Upload Submission button.</li>
+                <li>Submission Confirmation: After uploading, you will receive a confirmation email and a submission status update in your account.</li>
+            </ol>
+            <div class="timer">
+                <h4>⏳ Live Timer Display:</h4>
+                <p>Time remaining: <span id="countdown">03:00:00</span></p>
+            </div>
+        </div>
+
+        <div class="competition">
+            <h3>2️⃣ Story Writing Competition</h3>
+            <h4>✅ Rules & Guidelines:</h4>
+            <ul>
+                <li>Only registered users can participate.</li>
+                <li>Participants can submit any original short story.</li>
+                <li>Deadline: One week from the competition announcement.</li>
+            </ul>
+            <h4>✅ Submission Process:</h4>
+            <ol>
+                <li>Write your story (save as a .doc, .docx, or .pdf file).</li>
+                <li>Click the Upload Submission button.</li>
+                <li>Submission Confirmation: You will receive a confirmation email and can check your submission status in your account.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="winner-selection">
+        <h2>🏆 Winner Selection & Prizes</h2>
+        <ul>
+            <li>✔️ The best essays and stories will be reviewed by a panel of judges.</li>
+            <li>✔️ Prizes include:
+                <ul>
+                    <li>🎁 Popular books (General Knowledge, Grammar, and Storybooks).</li>
+                    <li>📰 Feature in our next journal publication.</li>
+                </ul>
+            </li>
+            <li>✔️ Winners’ names and submissions will be displayed on the home page.</li>
+        </ul>
+    </section>
+
+    <section id="past-winners">
+        <h2>🎉 Past Winners</h2>
+        <div class="winners">
+            <h3>🥇 Previous Competition Winners</h3>
+            <ul>
+                <li>[Winner Name] – [Essay/Story Title]</li>
+                <li>[Winner Name] – [Essay/Story Title]</li>
+            </ul>
+            <h3>🏆 Current Competition Winners (Updated after results are announced)</h3>
+        </div>
+    </section>
+
+    <section id="upcoming-competitions">
+        <h2>📅 Upcoming Competitions</h2>
+        <ul>
+    
+    <button onclick="openModal()">Participate Now</button>
+    
+    <div id="participationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Participate in the Competition</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                
+                <label for="category">Competition Category:</label>
+                <select id="category" name="category">
+                    <option value="essay">Essay Writing</option>
+                    <option value="story">Story Writing</option>
+                </select><br><br>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function openModal() {
+            document.getElementById("participationModal").style.display = "block";
+        }
+        function closeModal() {
+            document.getElementById("participationModal").style.display = "none";
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById("participationModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

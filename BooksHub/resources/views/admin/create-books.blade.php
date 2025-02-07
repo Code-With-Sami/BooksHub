@@ -74,7 +74,7 @@
                    </div>
                    <div class="mb-4">
                     <h5 class="mb-3">Book Image</h5>
-                    <input id="fancy-file-upload" type="file" name="cover_img" accept=".jpg, .png, image/jpeg, image/png">
+                    <input  type="file" name="cover_image" accept=".jpg, .png, image/jpeg, image/png">
                   </div>
                   <div class="mb-4">
                     <h5 class="mb-3">Inventory</h5>
@@ -142,7 +142,7 @@
                             <div class="row g-3">
                               <div class="col-12 col-lg-12">
                                 <h6>Upload Book</h6>
-                                <input id="fancy-file-upload" type="file" name="file_url" accept=".pdf">
+                                <input type="file" name="file_url" accept=".pdf">
                               </div>
                             </div>
                           </div>
@@ -180,8 +180,8 @@
                           <div class="col-12">
                             <label for="format" class="form-label">Format</label>
                             <select class="form-select" name="format" id="format">
-                              <option value="Soft-Copy">Soft Copy</option>
-                              <option value="Hard-Copy">Hard Copy</option>
+                              <option value="PDF">Soft Copy</option>
+                              <option value="Hard Copy">Hard Copy</option>
                               <option value="CD">CD</option>
                             </select>
                           </div>
