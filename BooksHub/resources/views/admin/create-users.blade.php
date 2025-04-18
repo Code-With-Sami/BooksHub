@@ -60,7 +60,7 @@
       
         <!-- row start -->
         <div class="row">
-					<div class="col-xl-12 mx-auto">
+			<div class="col-xl-12 mx-auto">
             <div class="card p-3 my-5">
             <form class="row g-3 needs-validation" action="{{ route('storeusers') }}" method="POST" novalidate>
                   @csrf 
@@ -115,12 +115,7 @@
 									</div>
 									<div class="col-md-6">
 										<label for="bsValidation9" class="form-label">Country</label>
-										<select id="bsValidation9" name="country" class="form-select" required>
-											<option selected disabled value>Country</option>
-											<option vlaue="one">One</option>
-											<option vlaue="two">Two</option>
-											<option vlaue="three">Three</option>
-										</select>
+										<input type="text" name="country" class="form-control" id="bsValidation9" placeholder="Country" required>
 										<div class="invalid-feedback">
 										   Please select a valid country.
 										</div>

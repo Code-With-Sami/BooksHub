@@ -101,12 +101,7 @@
 									</div>
 									<div class="col-md-6">
 										<label for="bsValidation9" class="form-label">Country</label>
-										<select id="bsValidation9" name="country" class="form-select" required>
-											<option selected>{{$users->country}}</option>
-											<option vlaue="one">One</option>
-											<option vlaue="two">Two</option>
-											<option vlaue="three">Three</option>
-										</select>
+										<input type="text" name="country" value="{{$users->country}}" class="form-control" id="bsValidation9" placeholder="Country" required>
 										<div class="invalid-feedback">
 										   Looks good.
 										</div>

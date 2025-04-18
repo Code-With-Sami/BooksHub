@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +20,15 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        // Fetch latest users (limit to 7 for display)
+        $users = User::latest()->take(7)->get();
+
+        // Fetch latest orders (limit to 5 for display)
+        $orders = Order::latest()->take(5)->get();
+
+        $books = Book::with('category')->latest()->take(7)->get();
+
+        return view('admin.dashboard', compact('users', 'orders', 'books'));
     }
 
     public function users()
